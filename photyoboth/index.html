@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photobooth Koran Modern</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700;900&family=Permanent+Marker&family=Kaushan+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Cropper.js for Manual Cropping -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-logo" onclick="goHome()" style="cursor: pointer;">Naf photobooth</div>
+
+        <!-- Mobile Menu Toggle -->
+        <div class="menu-toggle" id="mobile-menu" onclick="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <div class="nav-links" id="nav-links">
+            <a href="#" onclick="goHome(); toggleMenu()">home</a>
+            <a href="#" onclick="enterAbout(); toggleMenu()">about</a>
+            <a href="#" onclick="enterPolicy(); toggleMenu()">privacy policy</a>
+            <a href="#" onclick="enterSpotlight(); toggleMenu()">spotlight</a>
+            <a href="#" onclick="enterContact(); toggleMenu()">contact</a>
+            <a href="#" onclick="enterLayoutSelection(); toggleMenu()" class="nav-cta">choose layout</a>
+        </div>
+        <a href="https://github.com/sanafaksa" target="_blank" class="nav-icon"
+            style="color: inherit; text-decoration: none;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                </path>
+            </svg>
+        </a>
+    </nav>
+
+    <!-- Main Container Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- LANDING PAGE SECTION -->
+        <div id="landingPage" class="landing-section">
+            <div class="landing-notification">
+                <div class="badge-new">NEW</div>
+                <div class="notif-text">
+                    <strong>Website ini masih dalam tahap pengembangan.</strong> Jika menemukan bug, error, atau
+                    memiliki saran fitur tambahan, silakan hubungi kami melalui Instagram <a
+                        href="https://instagram.com/aksanaf.production" target="_blank"
+                        style="color: inherit; font-weight: bold; text-decoration: underline;">@aksanaf.production</a>.
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <!-- Left Deco -->
+                <div class="deco-img left-deco">
+                    <div class="strip-mockup">
+                        <div class="mock-photo"></div>
+                        <div class="mock-photo"></div>
+                        <div class="mock-photo"></div>
+                    </div>
+                </div>
+
+                <!-- Center Text -->
+                <div class="center-text">
+                    <div class="est-label left">EST</div>
+                    <h1 class="hero-title">Naf photobooth</h1>
+                    <div class="est-label right">2025</div>
+                    <p class="hero-subtitle">Capture the moment, cherish the magic,<br>relive the love</p>
+
+                    <button onclick="enterLayoutSelection()" class="btn-start-hero">
+                        START 📸
+                    </button>
+                </div>
+
+                <!-- Right Deco -->
+                <div class="deco-img right-deco">
+                    <div class="strip-mockup rotate-right">
+                        <div class="mock-photo"></div>
+                        <div class="mock-photo"></div>
+                        <div class="mock-photo"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LAYOUT SELECTION PAGE (New) -->
+        <div id="layoutPage" class="about-section" style="display: none;">
+            <div class="about-header-card" style="background: transparent; box-shadow: none; padding: 0;">
+                <h2 style="font-size: 3rem; margin-bottom: 10px;">choose your layout</h2>
+                <p>NOTE: you have 3 seconds for each shot</p>
+            </div>
+
+            <div class="layout-grid">
+                <!-- Layout Option A: Strip -->
+                <div class="layout-card" onclick="selectLayout('polaroid')">
+                    <div class="layout-preview">
+                        <div class="mini-strip">
+                            <div class="mini-photo"></div>
+                            <div class="mini-photo"></div>
+                            <div class="mini-photo"></div>
+                        </div>
+                    </div>
+                    <h3>layout A</h3>
+                    <p>Size 6 x 2 Strip<br>(3 Pose)</p>
+                </div>
+
+                <!-- Layout Option B: Newspaper -->
+                <div class="layout-card" onclick="selectLayout('classic')">
+                    <div class="badge-new">NEW</div>
+                    <div class="layout-preview">
+                        <div class="mini-newspaper">
+                            <div class="mini-head">NEWS</div>
+                            <div class="mini-photo-rect"></div>
+                        </div>
+                    </div>
+                    <h3>layout B</h3>
+                    <p>Classic News<br>(1 Pose)</p>
+                </div>
+
+                <!-- Layout Option C: Double News -->
+                <div class="layout-card" onclick="selectLayout('double-news')">
+                    <div class="layout-preview">
+                        <div class="mini-newspaper-double">
+                            <div class="mini-head">NEWS</div>
+                            <div class="mini-photo-rect-small"></div>
+                            <div class="mini-row">
+                                <div class="mini-text-lines"></div>
+                                <div class="mini-photo-rect-extra-small"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>layout C</h3>
+                    <p>Classic Double<br>(2 Pose)</p>
+                </div>
+
+                <!-- Layout Option D: 2x2 Grid -->
+                <div class="layout-card" onclick="selectLayout('grid')">
+                    <div class="layout-preview">
+                        <div class="mini-grid">
+                            <div class="mini-photo-sq"></div>
+                            <div class="mini-photo-sq"></div>
+                            <div class="mini-photo-sq"></div>
+                            <div class="mini-photo-sq"></div>
+                        </div>
+                    </div>
+                    <h3>layout D</h3>
+                    <p>Size 6 x 4 Grid<br>(4 Pose)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT PAGE SECTION -->
+        <div id="aboutPage" class="about-section" style="display: none;">
+            <div class="about-header-card">
+                <h2>about photobooth</h2>
+                <p>The online photobooth is a customizable, browser-based tool you can use anytime, anywhere. Create
+                    instant photobooth-style photos, apply filters, customize layouts, and download high-resolution
+                    photo strips directly from your device. No installation or account required. Designed for
+                    performance and privacy, everything runs locally in your browser.</p>
+            </div>
+
+            <div class="faq-card">
+                <h2>FAQ</h2>
+                <div class="faq-item">
+                    <h3>How do I use this site?</h3>
+                    <ol>
+                        <li>Choose layout.</li>
+                        <li>Allow camera.</li>
+                        <li>Capture photos.</li>
+                        <li>Download!</li>
+                    </ol>
+                </div>
+                <div class="faq-item">
+                    <h3>Mobile?</h3>
+                    <p>Yes, fully responsive.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Privacy?</h3>
+                    <p>Photos stay on your device.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIVACY POLICY PAGE -->
+        <div id="policyPage" class="about-section" style="display: none;">
+            <div class="about-header-card">
+                <h2>Privacy Policy</h2>
+                <p>We believe your photos belong to you. Here is how we handle your data.</p>
+            </div>
+            <div class="faq-card" style="text-align: left;">
+                <div class="faq-item">
+                    <h3>1. Local Processing</h3>
+                    <p>All image processing happens directly in your web browser. Your webcam feed and captured photos
+                        are never sent to our servers.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>2. No Cookies</h3>
+                    <p>We do not use tracking cookies or third-party analytics scripts that compromise your privacy.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>3. Downloads</h3>
+                    <p>When you download a photo, it is generated locally. We do not keep a copy of your downloaded
+                        files.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPOTLIGHT PAGE -->
+        <div id="spotlightPage" class="about-section" style="display: none;">
+            <div class="about-header-card">
+                <h2>Weekly Spotlight</h2>
+                <p>Check out our favorite community submissions this week! Tag us to be featured.</p>
+            </div>
+            <div class="spotlight-grid">
+                <!-- Mockup Grid Items -->
+                <div class="spot-item">
+                    <div class="mock-photo" style="background:#ddd;"></div>
+                </div>
+                <div class="spot-item">
+                    <div class="mock-photo" style="background:#eee;"></div>
+                </div>
+                <div class="spot-item">
+                    <div class="mock-photo" style="background:#ccc;"></div>
+                </div>
+                <div class="spot-item">
+                    <div class="mock-photo" style="background:#bbb;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contactPage" class="about-section" style="display: none;">
+            <div class="about-header-card">
+                <h2>Contact Us</h2>
+                <p>Have questions or suggestions? We'd love to hear from you.</p>
+            </div>
+            <div class="faq-card">
+                <form class="contact-form" action="https://formspree.io/f/mreeprwn" method="POST">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea name="message" rows="4" placeholder="Say hello..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-start-hero" style="width:100%; border-radius:10px;">Send
+                        Message</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- APP INTERFACE (Hidden initially) -->
+        <div id="appInterface" class="app-interface" style="display: none;">
+            <!-- Header for App Mode -->
+            <header class="app-header">
+                <h2>Ready to Capture?</h2>
+                <button onclick="goHome()" class="btn-back">← Back</button>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="camera-section">
+                    <div id="progressIndicator" class="progress-indicator">0/0</div>
+                    <div class="video-container">
+                        <video id="video" autoplay playsinline></video>
+                        <div id="countdown" class="countdown-overlay"></div>
+                    </div>
+                    <div class="flash-overlay" id="flash"></div>
+
+                    <div class="controls">
+                        <div class="main-btns">
+                            <button onclick="takePhoto()" class="btn-capture-large" id="btnCapture">
+                                START 📸
+                            </button>
+                            <div class="upload-container">
+                                <button onclick="document.getElementById('fileInput').click()" class="btn-upload">
+                                    <span>📁</span> Upload Image
+                                </button>
+                                <input type="file" id="fileInput" accept="image/*" style="display: none;"
+                                    onchange="handleFileUpload(event)">
+                            </div>
+                        </div>
+
+                        <div class="control-group">
+                            <label style="margin-top: 20px;">Choose a filter</label>
+                            <div class="filter-circles">
+                                <div class="filter-circle active" data-filter="normal" title="Normal"
+                                    style="background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                                <div class="filter-circle" data-filter="bw" title="B&W"
+                                    style="filter: grayscale(1); background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                                <div class="filter-circle" data-filter="sepia" title="Sepia"
+                                    style="filter: sepia(1); background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                                <div class="filter-circle" data-filter="warm" title="Warm"
+                                    style="filter: sepia(0.3) saturate(1.5); background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                                <div class="filter-circle" data-filter="cool" title="Cool"
+                                    style="filter: hue-rotate(180deg) saturate(1.2); background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                                <div class="filter-circle" data-filter="vintage" title="Vintage"
+                                    style="filter: contrast(1.2) brightness(0.9) sepia(0.5); background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                                <div class="filter-circle" data-filter="dramatic" title="Dramatic"
+                                    style="filter: contrast(1.5) brightness(0.8); background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=50&h=50&fit=crop') center/cover;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="control-group" id="captionGroup">
+                            <label>Caption:</label>
+                            <input type="text" id="judulCustom" placeholder="Write caption..." oninput="updateContent()"
+                                maxlength="25" style="display: block;" />
+                            <select id="pilihanJudul" onchange="updateContent()" style="display: none;">
+                                <option value="CUSTOM">Custom</option>
+                            </select>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Layout Style:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="layoutMode" value="classic" onchange="updateLayoutMode()">
+                                    <span class="radio-content">📰 Newspaper</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="layoutMode" value="polaroid" checked
+                                        onchange="updateLayoutMode()">
+                                    <span class="radio-content">🎞️ Strip</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="layoutMode" value="double-news"
+                                        onchange="updateLayoutMode()">
+                                    <span class="radio-content">📰 Double News</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="main-btns" style="flex-direction: row; gap: 10px;">
+                            <button onclick="retakeLastPhoto()" class="btn-reset"
+                                style="background: #ffeaa7; color: #d35400;">
+                                🔄 Retake
+                            </button>
+                            <button onclick="resetCamera()" class="btn-reset">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-section" id="resultArea">
+                    <!-- NEWSPAPER LAYOUT (Hidden by default now) -->
+                    <div id="koran" class="koran-paper" style="display: none;">
+                        <div class="paper-brand">The Daily Snap</div>
+                        <div id="cityImageContainer" class="city-banner" style="display: none;">
+                            <img id="cityImage" src="" alt="City View">
+                        </div>
+                        <div class="paper-meta">
+                            <span>VOL. 01</span>
+                            <span id="tanggal"></span>
+                            <span>RP 2.000</span>
+                        </div>
+
+                        <h1 id="mainHeadline" class="main-headline">HEADLINE</h1>
+
+                        <div class="canvas-wrapper" id="newspaperCanvasWrapper">
+                            <canvas id="canvas"></canvas>
+                            <div class="photo-caption">
+                                <span class="caption-bold">Highlights:</span>
+                                Abadikan momenmu hari ini.
+                            </div>
+                        </div>
+
+                        <div class="newspaper-columns">
+                            <div class="col">
+                                <h3>Trending Now</h3>
+                                <p>Suasana kota semakin hari semakin memikat. Banyak wisatawan berdatangan untuk
+                                    menikmati keindahan malam.</p>
+                            </div>
+                            <div class="col">
+                                <h3>Weather Update</h3>
+                                <p>Cuaca cerah menyelimuti langit hari ini, sangat cocok untuk berjalan-jalan dan
+                                    mengabadikan momen.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DOUBLE NEWSPAPER LAYOUT -->
+                    <div id="koranDouble" class="koran-paper koran-v2" style="display: none;">
+                        <div class="koran-header-v2">
+                            <div class="brand-v2">MALIOBORO</div>
+                            <div class="paper-meta-v2">
+                                <span>VOL. 02</span>
+                                <span class="tanggalDouble"></span>
+                                <span>RP 2.000</span>
+                            </div>
+                        </div>
+
+                        <h1 class="headline-v2 headlineDouble">YOGYAKARTA</h1>
+
+                        <div class="photo-main-v2">
+                            <canvas id="doubleCanvas1"></canvas>
+                        </div>
+
+                        <div class="news-body-v2">
+                            <div class="news-text-v2">
+                                <p><strong>LIFESTYLE</strong> — Momen berharga tidak akan terulang dua kali. Pastikan
+                                    setiap detik dalam hidupmu terekam dengan indah dalam bingkai klasik yang tak lekang
+                                    oleh waktu. Suasana kota Jogja semakin hari semakin memikat hati para pelancong yang
+                                    singgah. Kota budaya ini menyimpan sejuta kenangan.</p>
+                            </div>
+                            <div class="news-side-v2">
+                                <div class="photo-side-v2">
+                                    <canvas id="doubleCanvas2"></canvas>
+                                </div>
+                                <div class="side-caption-v2">Highlights: Daily Snap</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHOTO STRIP LAYOUT -->
+                    <div id="photoStrip" class="photo-strip" style="display: none;">
+                        <div class="strip-container">
+                            <!-- 3 Photo Slots -->
+                            <div class="strip-photo"><canvas id="stripCanvas1"></canvas></div>
+                            <div class="strip-photo"><canvas id="stripCanvas2"></canvas></div>
+                            <div class="strip-photo"><canvas id="stripCanvas3"></canvas></div>
+                        </div>
+                        <div class="strip-footer">
+                            <h2 id="stripCaption">photobooth</h2>
+                            <p id="stripDate">01.01.2024</p>
+                        </div>
+                    </div>
+
+                    <!-- 2x2 GRID LAYOUT (Layout D) -->
+                    <div id="photoGrid" class="photo-grid-2x2" style="display: none;">
+                        <div class="grid-container">
+                            <div class="grid-photo"><canvas id="gridCanvas1"></canvas></div>
+                            <div class="grid-photo"><canvas id="gridCanvas2"></canvas></div>
+                            <div class="grid-photo"><canvas id="gridCanvas3"></canvas></div>
+                            <div class="grid-photo"><canvas id="gridCanvas4"></canvas></div>
+                        </div>
+                        <div class="grid-footer">
+                            <h2 id="gridCaption">photobooth</h2>
+                            <p id="gridDate">2025</p>
+                        </div>
+                    </div>
+
+                    <button onclick="download()" class="btn-download" id="btnDownload" style="display: none;">
+                        ⬇ Download Image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Manual Crop Modal -->
+    <div id="cropModal" class="crop-modal">
+        <div class="crop-container">
+            <h3>Adjust Your Photo ✂️</h3>
+            <div class="crop-box">
+                <img id="imageToCrop" src="" alt="To Crop">
+            </div>
+            <div class="crop-actions">
+                <button onclick="cancelCrop()" class="btn-cancel">Cancel</button>
+                <button onclick="applyCrop()" class="btn-apply">Save Crop</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer-copyright">
+        <p>&copy; 2026 Naf photobooth. All Right Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+body {
+    font-family: "Times New Roman", serif;
+    background: #f2f2f2;
+    text-align: center;
+}
+
+.container {
+    padding: 20px;
+}
+
+video {
+    width: 300px;
+    border: 2px solid #000;
+}
+
+#koran {
+    margin: 20px auto;
+    width: 350px;
+    background: #fff;
+    padding: 15px;
+    border: 3px solid #000;
+}
+
+#judulKoran {
+    font-size: 28px;
+    border-bottom: 2px solid black;
+}
+
+canvas {
+    width: 100%;
+    border: 1px solid #000;
+    margin-top: 10px;
+}
+
+.caption {
+    font-size: 12px;
+    margin-top: 8px;
+}
